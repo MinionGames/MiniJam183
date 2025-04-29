@@ -39,10 +39,11 @@ namespace Game.Enemy
             Vector2 lookDir = playerPosition - new Vector2(transform.position.x, transform.position.y);
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, angle);
-
             Vector2 rayLeft = new Vector2(Mathf.Sin(FOV / 2), Mathf.Cos(FOV / 2));
+            Vector2 rayRight = new Vector2(Mathf.Sin(-FOV / 2), Mathf.Cos(FOV / 2));
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
+            RaycastHit2D hit = new RaycastHit2D();
+
 
             // If it hits something...
             if (hit)
