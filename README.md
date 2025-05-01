@@ -1,2 +1,2 @@
-# MiniJam183
-This is the repository for a Mini Jam submission. Theme: Calculations
+# GameJamPixelArt
+This is the repository for a Game Jam submission. Theme: Pixel Art
