@@ -581,7 +581,14 @@ MonoBehaviour:
   maxHealth: 0
   deathParticles: {fileID: 0}
   currentHealth: 0
-  moveSpeed: 0
+  moveSpeed: 10
+  FOV: 20
+  damage: 5
+  melee: 1
+  followPlayer: 0
+  stunnedTime: 0
+  nextPatrolLocation: {fileID: 0}
+  panic: 0
   playerObject: {fileID: 1893651714}
 --- !u!4 &734817830
 Transform:
@@ -592,7 +599,7 @@ Transform:
   m_GameObject: {fileID: 734817827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -2.5, z: 0}
+  m_LocalPosition: {x: 3, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -616,7 +623,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
