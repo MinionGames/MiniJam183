@@ -24,11 +24,14 @@ namespace Game.Player{
         private Camera cam;
         //private TimeManager timeManager;
 
+        private Rigidbody2D rb;
+
         //// --------METHODS--------
         // Awake (Unity)
         void Awake()
         {
             //timeManager = GameObject.Find("Time Manager").GetComponent<TimeManager>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         // Update (Unity)
@@ -40,7 +43,7 @@ namespace Game.Player{
             float moveSmoothness = Mathf.Max(input.x, input.y);
 
             movement = input.normalized * moveSpeed * moveSmoothness;
-            transform.position = transform.position + new Vector3(input.x * moveSpeed * Time.deltaTime, input.y * moveSpeed * Time.deltaTime, 0f);
+            rb.MovePosition(transform.position + new Vector3(input.x * moveSpeed * Time.deltaTime, input.y * moveSpeed * Time.deltaTime, 0f));
 
             // Player Rotation
             mouseInput = cam.ScreenToWorldPoint(Input.mousePosition);

@@ -30,9 +30,6 @@ namespace Game.Enemy
         //The 'followPlayer' variable was not showing and the '[SerializeField]' was invalid, so i removed the '{ get; set; }' after the 'followPlayer'.
         //This worked, however I do not know what this changed, so... yeah... we'll see...
         [SerializeField]
-        private bool followPlayer;
-
-        [SerializeField]
         private int stunnedTime;
 
         [SerializeField]
@@ -41,6 +38,9 @@ namespace Game.Enemy
         [SerializeField]
         private bool panic;
         //This occurs during the escpae coundown and causes random motion from robots instead of patrolling. Robots will still chase player.
+
+        [SerializeField]
+        public bool followPlayer;
 
         private Rigidbody2D rb;
 
@@ -60,6 +60,9 @@ namespace Game.Enemy
                 Vector2 lookDir = playerPosition - new Vector2(transform.position.x, transform.position.y);
                 float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
                 transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, angle);
+
+                // Move Player
+                rb.MovePosition(transform.position + transform.up * moveSpeed * Time.fixedDeltaTime);
             }
             Vector2 rayLeft = new Vector2(Mathf.Sin(FOV / 2), Mathf.Cos(FOV / 2));
             Vector2 rayRight = new Vector2(Mathf.Sin(-FOV / 2), Mathf.Cos(FOV / 2));

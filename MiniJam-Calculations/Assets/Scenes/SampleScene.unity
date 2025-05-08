@@ -543,7 +543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &734817828
 Animator:
   serializedVersion: 7
@@ -581,14 +581,14 @@ MonoBehaviour:
   maxHealth: 0
   deathParticles: {fileID: 0}
   currentHealth: 0
-  moveSpeed: 10
+  moveSpeed: 3
   FOV: 20
   damage: 5
   melee: 1
-  followPlayer: 0
   stunnedTime: 0
   nextPatrolLocation: {fileID: 0}
   panic: 0
+  followPlayer: 1
   playerObject: {fileID: 1893651714}
 --- !u!4 &734817830
 Transform:
