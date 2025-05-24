@@ -8,6 +8,10 @@ namespace Game.Player{
     {
         
         // --------DESCRIPTION--------
+        /* 
+            This script is responsible for
+            player controls and movement. 
+        */
         // Behavior
         [Header("Behavior")]
         public float moveSpeed;
@@ -23,6 +27,9 @@ namespace Game.Player{
         [SerializeField]
         private Camera cam;
         //private TimeManager timeManager;
+
+        // Calculation Variables
+        private float moveSmoothness;
 
         private Rigidbody2D rb;
 
@@ -40,10 +47,9 @@ namespace Game.Player{
             // Movement
             input.x = Input.GetAxis("Horizontal");
             input.y = Input.GetAxis("Vertical");
-            float moveSmoothness = Mathf.Max(input.x, input.y);
-
+            moveSmoothness = Mathf.Max(input.x, input.y);
             movement = input.normalized * moveSpeed * moveSmoothness;
-            rb.MovePosition(transform.position + new Vector3(input.x * moveSpeed * Time.deltaTime, input.y * moveSpeed * Time.deltaTime, 0f));
+            
 
             // Player Rotation
             mouseInput = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -51,6 +57,11 @@ namespace Game.Player{
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, angle);
 
+        }
+
+        void FixedUpdate()
+        {
+            rb.MovePosition(transform.position + new Vector3(movement.x * moveSpeed * Time.deltaTime, movement.y * moveSpeed * Time.deltaTime, 0f));
         }
 
     }
