@@ -61,7 +61,7 @@ namespace Game.Player{
 
         void FixedUpdate()
         {
-            rb.MovePosition(transform.position + new Vector3(movement.x * moveSpeed * Time.deltaTime, movement.y * moveSpeed * Time.deltaTime, 0f));
+            rb.MovePosition(transform.position + new Vector3(input.x * moveSpeed * Time.deltaTime, input.y * moveSpeed * Time.deltaTime, 0f));
         }
 
     }
