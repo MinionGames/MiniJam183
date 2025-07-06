@@ -16,6 +16,7 @@ namespace Game.Player{
         [Header("Behavior")]
         public float moveSpeed;
         public Transform shootFrom;
+        public float sprintFactor;
 
         // Private Variables
         private Vector2 input;
@@ -56,6 +57,7 @@ namespace Game.Player{
             Vector2 lookDir = mouseInput - new Vector2(transform.position.x, transform.position.y);
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, angle);
+
 
         }
 
