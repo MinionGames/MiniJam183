@@ -5,22 +5,22 @@ using Game.Logistics;
 using TMPro;
 
 namespace Game.Player{
+    /// <summary>
+    /// Singleton responsible for keeping track of the player's stats, such as health, stamina, and points.
+    /// <para>
+    /// This class is a singleton, there is only one instance of it in the game. 
+    /// To access: PlayerStats.Instance
+    /// </para>
+    /// </summary>
     public class PlayerStats : Entity
     {
-
-        //// --------DESCRIPTION--------
-        /*  This class will keep track of all
-            the stats for the player, including:
-                Health
-                Stamina
-                etc...
-        */
-
-        //// --------VARIABLES--------
+        /// --------VARIABLES--------
         // Singleton
         private static PlayerStats statsInstance;
-        public static PlayerStats Instance{
-            get{
+        public static PlayerStats Instance
+        {
+            get
+            {
                 if (statsInstance == null)
                     statsInstance = new PlayerStats();
                 return statsInstance;
@@ -52,11 +52,22 @@ namespace Game.Player{
             text.text = "Points: " + points;
         }
 
-        public void AddPoints(int points){
+        /// <summary>
+        /// Adds points to the player's score.
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns>None</returns>
+        public void AddPoints(int points)
+        {
             this.points += points;
         }
 
-        public float GetHealth(){
+        /// <summary>
+        /// Gets the current health of the player.
+        /// </summary>
+        /// <returns>float currentHealth</returns>
+        public float GetHealth()
+        {
             return currentHealth;
         }
 

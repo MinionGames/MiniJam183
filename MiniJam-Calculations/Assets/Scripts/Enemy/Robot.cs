@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Logistics;
 using UnityEngine.UIElements;
+using Game.Player;
 
 namespace Game.Enemy
 {
+    /// <summary>
+    /// Generic Robot Entity
+    /// </summary>
     public class Robot : Entity
     {
         //// --------DESCRIPTION--------
@@ -33,19 +37,21 @@ namespace Game.Enemy
         private int stunnedTime;
 
         [SerializeField]
-        private GameObject nextPatrolLocation;
+        private Vector3 nextPatrolLocation;
 
         [SerializeField]
         private bool panic;
         //This occurs during the escpae coundown and causes random motion from robots instead of patrolling. Robots will still chase player.
 
         [SerializeField]
-        public bool followPlayer;
+        public bool followPlayer { get; set; }
 
         private Rigidbody2D rb;
 
         [SerializeField]
         private GameObject playerObject;
+
+        private PlayerStats playerStats;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();

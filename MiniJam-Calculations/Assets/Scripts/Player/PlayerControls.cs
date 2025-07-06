@@ -6,17 +6,30 @@ using Game.Logistics;
 namespace Game.Player{
     public class PlayerControls : MonoBehaviour
     {
-        
+
         // --------DESCRIPTION--------
         /* 
             This script is responsible for
             player controls and movement. 
         */
+
+        public static PlayerControls playerInstance;
+        public static PlayerControls Instance
+        {
+            get
+            {
+                if (playerInstance == null)
+                    playerInstance = new PlayerControls();
+                return playerInstance;
+            }
+        }
+
         // Behavior
         [Header("Behavior")]
         public float moveSpeed;
         public Transform shootFrom;
         public float sprintFactor;
+        public bool sprinting;
 
         // Private Variables
         private Vector2 input;
@@ -45,12 +58,18 @@ namespace Game.Player{
         // Update (Unity)
         void Update()
         {
-            // Movement
+            // Input
             input.x = Input.GetAxis("Horizontal");
             input.y = Input.GetAxis("Vertical");
+            sprinting = Input.GetKey(KeyCode.LeftShift);
+
+            // Movement
             moveSmoothness = Mathf.Max(input.x, input.y);
             movement = input.normalized * moveSpeed * moveSmoothness;
-            
+            if (sprinting)
+            {
+                movement *= sprintFactor;
+            }
 
             // Player Rotation
             mouseInput = cam.ScreenToWorldPoint(Input.mousePosition);

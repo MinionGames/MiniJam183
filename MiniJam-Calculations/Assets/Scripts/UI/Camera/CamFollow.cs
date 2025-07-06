@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Player;
 
 namespace Game.Visuals.Camera{
     public class CamFollow : MonoBehaviour
     {
-        
+
         //// --------DESCRIPTION--------
         /*  This script enables the camera to smoothly
             follow a target.
@@ -13,8 +14,9 @@ namespace Game.Visuals.Camera{
 
         //// --------VARIABLES--------
         // Input Variables (User-Defined)
+        //TEMP
         [SerializeField]
-        private GameObject player;
+        private PlayerControls playerControls;
         [SerializeField]
         private float followSmoothness = 10f;
         public bool followPlayer;
@@ -41,27 +43,27 @@ namespace Game.Visuals.Camera{
         // Update Method (Unity)
         void Update(){
             if(followPlayer){ // Check whether to follow player or not
-                target = player.transform.position; // If yes, set target to player pos
+                target = playerControls.transform.position; // If yes, set target to player pos
             }
-
-            // --Move Camera--
-            Vector3 movePos = (target - transform.position); // Get difference vector
-            
-            // Determine whether to move
-            Vector2 distance2D = new Vector2(movePos.x, movePos.y);
-            if (distance2D.magnitude >= followCutOffMin){
-                movePos /= followSmoothness;
-                movePos.z = 0; // Make sure z doesn't move
-                transform.position = transform.position + movePos * Time.deltaTime; // Apply follow vector
-            }
-                
         }
 
         // Fixed Update Method (Unity)
-        void FixedUpdate(){
+        void FixedUpdate()
+        {
             // Smoothly move camera to player pos
             // Vector2 camPos2D = new Vector2(rb.position.x, rb.position.y);
             // rb.MovePosition(Vector2.Lerp(camPos2D, target, followSmoothness));
+            // --Move Camera--
+            Vector3 movePos = (target - transform.position); // Get difference vector
+
+            // Determine whether to move
+            Vector2 distance2D = new Vector2(movePos.x, movePos.y);
+            if (distance2D.magnitude >= followCutOffMin)
+            {
+                movePos /= followSmoothness;
+                movePos.z = 0; // Make sure z doesn't move
+                transform.position = transform.position + movePos * Time.fixedDeltaTime; // Apply follow vector
+            }
         }
 
     }

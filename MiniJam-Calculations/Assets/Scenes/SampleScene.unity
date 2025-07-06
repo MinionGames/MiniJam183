@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83042a61e573d5347b5ddd1fa89dea50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1893651714}
+  playerControls: {fileID: 1893651715}
   followSmoothness: 0.25
   followPlayer: 1
   target: {x: 0, y: 0, z: 0}
@@ -586,9 +586,8 @@ MonoBehaviour:
   damage: 5
   melee: 1
   stunnedTime: 0
-  nextPatrolLocation: {fileID: 0}
+  nextPatrolLocation: {x: 0, y: 0, z: 0}
   panic: 0
-  followPlayer: 0
   playerObject: {fileID: 1893651714}
 --- !u!4 &734817830
 Transform:
@@ -1218,6 +1217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   shootFrom: {fileID: 903236690}
+  sprintFactor: 1.5
+  sprinting: 0
   cam: {fileID: 519420031}
 --- !u!4 &1893651716
 Transform:
