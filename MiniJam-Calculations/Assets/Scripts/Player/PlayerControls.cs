@@ -4,6 +4,9 @@ using UnityEngine;
 using Game.Logistics;
 
 namespace Game.Player{
+    /// <summary>
+    /// Singleton manager for player controls and movement.
+    /// </summary>
     public class PlayerControls : MonoBehaviour
     {
 
@@ -64,7 +67,7 @@ namespace Game.Player{
             sprinting = Input.GetKey(KeyCode.LeftShift);
 
             // Movement
-            moveSmoothness = Mathf.Max(input.x, input.y);
+            moveSmoothness = Mathf.Max(Mathf.Abs(input.x), Mathf.Abs(input.y));
             movement = input.normalized * moveSpeed * moveSmoothness;
             if (sprinting)
             {
@@ -82,7 +85,7 @@ namespace Game.Player{
 
         void FixedUpdate()
         {
-            rb.MovePosition(transform.position + new Vector3(input.x * moveSpeed * Time.deltaTime, input.y * moveSpeed * Time.deltaTime, 0f));
+            rb.MovePosition(transform.position + new Vector3(movement.x, movement.y, 0f) * Time.fixedDeltaTime);
         }
 
     }

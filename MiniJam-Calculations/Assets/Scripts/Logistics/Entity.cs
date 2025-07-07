@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Logistics{
+    /// <summary>
+    /// Base class for all entities in the game.
+    /// </summary>
     public class Entity : MonoBehaviour
     {
         //// --------DESCRIPTION--------
         /*  This class is a base class for entities:
             they will hold a health and destroy functions.
         */
-
+        
         //// --------VARIABLES--------
         [Header("Entity Variables")]
         [SerializeField]
@@ -20,12 +23,14 @@ namespace Game.Logistics{
         [SerializeField]
         protected float currentHealth;
 
-        public void DestroySelf() {
+        public void DestroySelf()
+        {
             Instantiate(deathParticles, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
 
-        public void ChangeHealth(float changeAmount) {
+        public void ChangeHealth(float changeAmount)
+        {
             currentHealth += changeAmount;
         }
 

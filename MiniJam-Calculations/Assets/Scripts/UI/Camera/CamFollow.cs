@@ -4,6 +4,9 @@ using UnityEngine;
 using Game.Player;
 
 namespace Game.Visuals.Camera{
+    /// <summary>
+    /// This script enables camera movement.
+    /// </summary>
     public class CamFollow : MonoBehaviour
     {
 
@@ -34,15 +37,18 @@ namespace Game.Visuals.Camera{
 
         //// --------METHODS--------
         // Start Method (Unity)
-        void Start(){
+        void Start()
+        {
             // --Initialize--
             followPlayer = true;
             rb = GetComponent<Rigidbody2D>();
         }
 
         // Update Method (Unity)
-        void Update(){
-            if(followPlayer){ // Check whether to follow player or not
+        void Update()
+        {
+            if (followPlayer)
+            { // Check whether to follow player or not
                 target = playerControls.transform.position; // If yes, set target to player pos
             }
         }
