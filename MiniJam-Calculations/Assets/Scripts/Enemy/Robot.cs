@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Game.Logistics;
 using UnityEngine.UIElements;
+using UnityEngine.AI;
+using Game.Logistics;
 using Game.Player;
 
 namespace Game.Enemy
@@ -31,8 +32,6 @@ namespace Game.Enemy
         private bool melee = true;
 
         [Header("Dev Settings")]
-        //The 'followPlayer' variable was not showing and the '[SerializeField]' was invalid, so i removed the '{ get; set; }' after the 'followPlayer'.
-        //This worked, however I do not know what this changed, so... yeah... we'll see...
         [SerializeField]
         private int stunnedTime;
 
@@ -47,14 +46,12 @@ namespace Game.Enemy
         public bool followPlayer { get; set; }
 
         private Rigidbody2D rb;
+        private NavMeshAgent agent;
 
-        [SerializeField]
-        private GameObject playerObject;
-
-        private PlayerStats playerStats;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            agent = GetComponent<NavMeshAgent>();
         }
 
         private void FixedUpdate()
