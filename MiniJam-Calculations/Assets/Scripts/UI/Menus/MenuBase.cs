@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Animations;
 
 namespace Game.UI.Menus
@@ -14,12 +15,12 @@ namespace Game.UI.Menus
         /// <summary>
         /// This method can be overridden by derived classes to perform actions when the menu is opened.
         /// </summary>
-        public virtual void OnMenuOpen() { }
+        public virtual void OnMenuOpen() {}
 
         /// <summary>
         /// This method can be overridden by derived classes to perform actions when the menu is closed.
         /// </summary>
-        public virtual void OnMenuClose() { }
+        public virtual void OnMenuClose() {}
         
     }
 }

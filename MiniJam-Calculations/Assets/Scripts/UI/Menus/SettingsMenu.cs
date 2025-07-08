@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.UI.Menus
 {
@@ -9,10 +10,12 @@ namespace Game.UI.Menus
     /// </summary>
     public class SettingsMenu : MenuBase
     {
+        
 
-        void Start()
+
+        void Awake()
         {
-
+            DontDestroyOnLoad(this.gameObject);
         }
 
         // Update is called once per frame
