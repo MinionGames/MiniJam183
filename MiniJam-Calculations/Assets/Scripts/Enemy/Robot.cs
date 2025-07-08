@@ -13,40 +13,35 @@ namespace Game.Enemy
     /// </summary>
     public class Robot : Entity
     {
-        //// --------DESCRIPTION--------
-        /*
-            This is the script for the generic robot.
-        */
 
         [Header("Generic Robot Settings")]
         [SerializeField]
+        private bool canMove;
+        [SerializeField]
         private float moveSpeed = 10;
-
         [SerializeField]
         private float FOV = 20;
-
         [SerializeField]
         private int damage = 5;
-
         [SerializeField]
         private bool melee = true;
+        [SerializeField]
+        private int stunnedTime;
+        public bool panic;
+        //This occurs during the escpae coundown and causes random motion from robots instead of patrolling. 
+        // Robots will still chase player.
 
         [Header("Dev Settings")]
         [SerializeField]
-        private int stunnedTime;
-
-        [SerializeField]
-        private Vector3 nextPatrolLocation;
-
-        [SerializeField]
-        private bool panic;
-        //This occurs during the escpae coundown and causes random motion from robots instead of patrolling. Robots will still chase player.
+        private Vector3 target;
 
         [SerializeField]
         public bool followPlayer { get; set; }
 
         private Rigidbody2D rb;
         private NavMeshAgent agent;
+        [SerializeField]
+        private Transform playerTransform;
 
         private void Start()
         {
@@ -54,9 +49,14 @@ namespace Game.Enemy
             agent = GetComponent<NavMeshAgent>();
         }
 
+        void Update()
+        {
+            agent.SetDestination(playerTransform.position);
+        }
+
         private void FixedUpdate()
         {
-            Vector2 playerPosition = new Vector2(playerObject.transform.position.x, playerObject.transform.position.y);
+            Vector2 playerPosition = new Vector2(target.x, target.y);
             if (followPlayer)
             {
                 //Only look at player if it is following the player, but I don't know what I'm doing...

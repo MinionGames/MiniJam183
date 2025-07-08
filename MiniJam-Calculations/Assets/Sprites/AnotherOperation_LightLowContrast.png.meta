@@ -141,6 +141,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -509,7 +522,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AnotherOperation_LightLowContrast_0: -6906684125576580788
+      AnotherOperation_LightLowContrast_1: 7659661872288681670
+      AnotherOperation_LightLowContrast_10: -8873785071422063730
+      AnotherOperation_LightLowContrast_11: -1393149155788952282
+      AnotherOperation_LightLowContrast_12: -5129468277078813493
+      AnotherOperation_LightLowContrast_13: 144934710883169377
+      AnotherOperation_LightLowContrast_14: -8078641758953455692
+      AnotherOperation_LightLowContrast_15: -9070016919178732313
+      AnotherOperation_LightLowContrast_2: 7857215485809835575
+      AnotherOperation_LightLowContrast_3: 943064960001465332
+      AnotherOperation_LightLowContrast_4: -864856646439255243
+      AnotherOperation_LightLowContrast_5: 7952913479321211773
+      AnotherOperation_LightLowContrast_6: 2830926748956198769
+      AnotherOperation_LightLowContrast_7: 7937179278735862389
+      AnotherOperation_LightLowContrast_8: 2599924352355811690
+      AnotherOperation_LightLowContrast_9: -3221026277708183825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
