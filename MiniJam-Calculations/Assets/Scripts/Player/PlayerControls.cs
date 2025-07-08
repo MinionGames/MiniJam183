@@ -33,6 +33,11 @@ namespace Game.Player{
         public Transform shootFrom;
         public float sprintFactor;
         public bool sprinting;
+        public float sneakFactor;
+        public bool sneak;
+        public bool canDash;
+        public float dashAmount;
+        public float dashCooldown;
 
         // Private Variables
         private Vector2 input;
@@ -47,6 +52,7 @@ namespace Game.Player{
 
         // Calculation Variables
         private float moveSmoothness;
+        private float timer;
 
         private Rigidbody2D rb;
 
@@ -65,13 +71,37 @@ namespace Game.Player{
             input.x = Input.GetAxis("Horizontal");
             input.y = Input.GetAxis("Vertical");
             sprinting = Input.GetKey(KeyCode.LeftShift);
+            sneak = Input.GetKey(KeyCode.C);
 
             // Movement
             moveSmoothness = Mathf.Max(Mathf.Abs(input.x), Mathf.Abs(input.y));
             movement = input.normalized * moveSpeed * moveSmoothness;
-            if (sprinting)
+            if (moveSmoothness < 0.1f || (sprinting && sneak)) // If no input, stop moving
+            {
+                movement = Vector2.zero;
+            }
+            else if (sprinting)
             {
                 movement *= sprintFactor;
+            }
+            else if (sneak)
+            {
+                movement *= sneakFactor;
+            }
+            // Dash
+            if (timer >= dashCooldown)
+            {
+                canDash = true; // Reset dash ability after cooldown
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && canDash)
+            {
+                // Implement dash logic here
+                // For example, you could set a dash speed and direction
+                Vector2 dashMovement = input.normalized * dashAmount;
+                transform.position = transform.position + new Vector3(input.normalized.x, input.normalized.y) * dashAmount;
+                canDash = false; // Disable dashing until cooldown is over
+                timer = 0f;
             }
 
             // Player Rotation
@@ -80,12 +110,13 @@ namespace Game.Player{
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, angle);
 
-
         }
 
         void FixedUpdate()
         {
             rb.MovePosition(transform.position + new Vector3(movement.x, movement.y, 0f) * Time.fixedDeltaTime);
+
+            timer += Time.fixedDeltaTime;
         }
 
     }
