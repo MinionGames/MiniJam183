@@ -42,11 +42,25 @@ namespace Game.Enemy
 
         private Rigidbody2D rb;
         private NavMeshAgent agent;
+        [SerializeField]
+        private Transform playerTransform;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             agent = GetComponent<NavMeshAgent>();
+        }
+
+        void Update()
+        {
+            agent.SetDestination(playerTransform.position);
+            rb.velocity = Vector2.zero; // Reset velocity to prevent unwanted movement
+
+            // Robot Rotation
+            Vector2 playerPosition = new Vector2(playerTransform.position.x, playerTransform.position.y);
+            Vector2 lookDir = playerPosition - new Vector2(transform.position.x, transform.position.y);
+            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+            transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, angle);
         }
 
         private void FixedUpdate()
