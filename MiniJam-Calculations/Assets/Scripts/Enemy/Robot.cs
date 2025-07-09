@@ -25,6 +25,8 @@ namespace Game.Enemy
         private int damage = 5;
         [SerializeField]
         private bool melee = true;
+
+        [Header("Dev Settings")]
         [SerializeField]
         private int stunnedTime;
         public bool panic;
