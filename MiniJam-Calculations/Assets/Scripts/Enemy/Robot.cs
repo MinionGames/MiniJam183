@@ -42,18 +42,11 @@ namespace Game.Enemy
 
         private Rigidbody2D rb;
         private NavMeshAgent agent;
-        [SerializeField]
-        private Transform playerTransform;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             agent = GetComponent<NavMeshAgent>();
-        }
-
-        void Update()
-        {
-            agent.SetDestination(playerTransform.position);
         }
 
         private void FixedUpdate()
