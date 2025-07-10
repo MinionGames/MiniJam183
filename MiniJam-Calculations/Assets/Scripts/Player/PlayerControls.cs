@@ -94,7 +94,7 @@ namespace Game.Player{
                 canDash = true; // Reset dash ability after cooldown
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && canDash)
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && input.magnitude > 0.1f)
             {
                 // Implement dash logic here
                 // For example, you could set a dash speed and direction
